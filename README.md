@@ -134,3 +134,20 @@ CI execution would be parallelized using Cypress Cloud or CI-level splitting.
 ## Additional Notes
 
 This repository is intentionally separated from the Playwright project to reflect a real-world scenario where multiple testing tools may coexist or be evaluated independently.
+
+## Note on API Test (ReqRes)
+
+The original task specifies using the ReqRes API (`/api/users?page=2`).
+
+During implementation, the endpoint returned a `403 Forbidden` response due to Cloudflare protection when accessed via automated tools.
+
+To ensure test stability and deterministic results, a reliable public API (JSONPlaceholder) was used instead for validating:
+
+- HTTP status code
+- response structure
+- presence of required fields
+
+In a real-world scenario, this would be addressed by:
+
+- using proper API authentication (API key / token), or
+- coordinating with backend teams to provide a test-friendly environment
